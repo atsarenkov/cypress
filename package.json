@@ -1,0 +1,16 @@
+{
+  "name": "cypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Alexei",
+  "license": "ISC",
+  "devDependencies": {
+    "@cypress/grep": "^3.1.5",
+    "@cypress/xpath": "^2.0.3",
+    "@percy/cli": "^1.26.1",
+    "@percy/cypress": "^3.1.2",
+    "@testing-library/cypress": "^9.0.0",
+    "cypress": "^12.15.0"
+  }
+}
