@@ -6,7 +6,7 @@
   "author": "Alexei",
   "license": "ISC",
   "scripts": {
-    "percy:chrome": "npx percy exec -- cypress run --browser chrome --record --env configFile=functional",
+    "percy:chrome": "npx percy exec -- cypress run --browser chrome --env configFile=functional",
     "percy:edge": "npx percy exec -- cypress run --browser edge --record --env configFile=functional",
     "percy:firefox": "npx percy exec -- cypress run --browser firefox --record --env configFile=functional",
     "functional:chrome": "npx cypress run --browser chrome --env configFile=functional",
