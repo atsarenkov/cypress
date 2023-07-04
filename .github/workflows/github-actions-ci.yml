@@ -12,10 +12,14 @@ jobs:
           runTests: false
           record: true  
       - name: UI Tests - Chrome
-        run: npm run percy:chrome 
+        run: npm run percy:chrome
+      - name: API Tests
+        run: npm run api 
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_EMAIL: ${{ secrets.CYPRESS_EMAIL }}
           CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
+          CYPRESS_KEY: ${{ secrets.CYPRESS_KEY }}
+          CYPRESS_TOKEN: ${{ secrets.CYPRESS_TOKEN }}
