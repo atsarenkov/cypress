@@ -9,7 +9,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          build: npm run build
           record: true  
       - name: UI Tests - Chrome
         run: npm run percy:chrome 
