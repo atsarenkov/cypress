@@ -10,6 +10,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           runTests: false
+          record: true
       - name: UI tests - Chrome
         run: npm run percy:chrome
       - name: API Tests
