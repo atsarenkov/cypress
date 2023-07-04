@@ -32,7 +32,12 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build
-          path: build/            
+          path: build/
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v5   
+        with:
+          runTests: false             
       
       - name: API tests
         run: npm run api
