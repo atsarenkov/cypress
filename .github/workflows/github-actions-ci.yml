@@ -19,7 +19,7 @@ jobs:
         with:
           name: build
           if-no-files-found: error
-          path: build
+          path: build/
   
   cypress-run:
     runs-on: ubuntu-latest
@@ -32,7 +32,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build
-          path: build            
+          path: build/            
       
       - name: API tests
         run: npm run api
