@@ -12,7 +12,7 @@
     "functional:chrome": "npx cypress run --browser chrome --env configFile=functional",
     "functional:edge": "npx cypress run --browser edge --env configFile=functional",
     "functional:firefox": "npx cypress run --browser firefox --env configFile=functional",
-    "api": "npx cypress run --env configFile=api"
+    "api": "npx cypress run --record --env configFile=api"
   },
   "devDependencies": {
     "@cypress/grep": "^3.1.5",
