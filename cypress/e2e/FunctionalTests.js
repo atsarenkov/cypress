@@ -23,6 +23,7 @@ describe('Workspace', { tags: '@functional' }, () => {
     buildWorkspaceModal.inviteMember(email);
     workspacePage.uploadLogo(logoPath);
     workspacePage.workspaceName.should('have.text', workspaceName);
+    workspacePage.collapseSidebar();
     cy.percySnapshot("WorkspacePage"); // performs visual comparison using Percy  
   });
 
@@ -32,6 +33,7 @@ describe('Workspace', { tags: '@functional' }, () => {
     createBoardModal.clickStartWithTemplate();
     createBoardModal.selectBoardTemplate('Simple Project Board');
     createBoardModal.clickCreate();
+    workspacePage.collapseSidebar();
     cy.percySnapshot("BoardContent");
   });
 

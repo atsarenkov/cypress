@@ -5,6 +5,15 @@
   "main": "index.js",
   "author": "Alexei",
   "license": "ISC",
+  "scripts": {
+    "percy:chrome": "npx percy exec -- cypress run --browser chrome --record --env configFile=functional",
+    "percy:edge": "npx percy exec -- cypress run --browser edge --record --env configFile=functional",
+    "percy:firefox": "npx percy exec -- cypress run --browser firefox --record --env configFile=functional",
+    "functional:chrome": "npx cypress run --browser chrome --env configFile=functional",
+    "functional:edge": "npx cypress run --browser edge --env configFile=functional",
+    "functional:firefox": "npx cypress run --browser firefox --env configFile=functional",
+    "api": "npx cypress run --env configFile=api"
+  },
   "devDependencies": {
     "@cypress/grep": "^3.1.5",
     "@cypress/xpath": "^2.0.3",

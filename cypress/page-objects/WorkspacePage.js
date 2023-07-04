@@ -13,6 +13,10 @@ class WorkspacePage {
   clickCreateNewBoard() {
     cy.findByTestId('create-board-tile').click();
   }
+
+  collapseSidebar() {
+    cy.findByAltText('Workspace navigation collapse icon').click();
+  }
 }
   
 export default new WorkspacePage();

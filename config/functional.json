@@ -1,3 +1,6 @@
 {
-    "baseUrl": "https://trello.com"
+    "baseUrl": "https://trello.com",
+    "env": {
+        "grepTags": "@functional"
+      }
 }
