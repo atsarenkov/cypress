@@ -118,7 +118,7 @@ jobs:
       uses: cypress-io/github-action@v5
       with:
         start: npm run percy:firefox
-        config-file: config/functional.json
+        config-file: /home/runner/work/cypress/config/functional.json
       env:
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
