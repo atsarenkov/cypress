@@ -38,6 +38,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with: 
           runTests: false
+      
       - name: API tests
         run: npm run api   
         env:
@@ -59,10 +60,13 @@ jobs:
           name: build
           path: build/
 
-      - name: Run UI tests - Chrome
+      - name: Cypress run
         uses: cypress-io/github-action@v5
-        with:
-          run: npm run percy:chrome
+        with: 
+          runTests: false
+      
+      - name: UI tests - Chrome
+        run: npm run percy:chrome
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
@@ -83,10 +87,13 @@ jobs:
         name: build
         path: build/
 
-    - name: Run UI tests - Edge
+    - name: Cypress run
       uses: cypress-io/github-action@v5
-      with:
-        run: npm run percy:edge
+      with: 
+        runTests: false
+    
+    - name: UI tests - Edge
+      run: npm run percy:edge
       env:
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
@@ -110,7 +117,8 @@ jobs:
     - name: Run UI tests - Firefox
       uses: cypress-io/github-action@v5
       with:
-        run: npm run percy:firefox
+        start: npm run percy:firefox
+        configfile: cypress.config.js
       env:
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
