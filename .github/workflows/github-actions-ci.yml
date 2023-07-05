@@ -117,9 +117,8 @@ jobs:
     - name: Run UI tests - Firefox
       uses: cypress-io/github-action@v5
       with:
-        config: "functional"
         start: npm run percy:firefox
-        config-file: cypress.config.js
+        config-file: config/functional.json
       env:
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
