@@ -23,3 +23,7 @@ Cypress.Commands.overwrite('request', (originalFn, ...args) => {
   }
   return originalFn({ ...defaults, ...options, ...{ headers: { ...defaults.headers, ...options.headers } } });
 });
+
+Cypress.Commands.add('navigateToHomePage', () => {
+  cy.visit('/');
+})

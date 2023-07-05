@@ -11,7 +11,7 @@ import { email, password, workspaceName, logoPath } from '../fixtures/TestData';
 describe('Workspace', { tags: '@functional' }, () => {
   beforeEach(() => {
     loginPage.logIn(email, password);
-    cy.visit('/');
+    cy.navigateToHomePage();
   });
 
   it('Create A Workspace', () => {
