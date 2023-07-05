@@ -117,7 +117,7 @@ jobs:
     - name: Run UI tests - Firefox
       uses: cypress-io/github-action@v5
       with:
-        config: functional
+        config: "functional"
         start: npm run percy:firefox
         config-file: cypress.config.js
       env:
