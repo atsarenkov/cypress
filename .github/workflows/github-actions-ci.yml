@@ -114,11 +114,13 @@ jobs:
         name: build
         path: build/
 
-    - name: Run UI tests - Firefox
+    - name: Cypress run
       uses: cypress-io/github-action@v5
-      with:
-        start: npm run percy:firefox
-        config-file: /home/runner/work/cypress/config/functional.json
+      with: 
+        runTests: false
+
+    - name: UI tests - Firefox
+      run: npm run percy:firefox
       env:
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
