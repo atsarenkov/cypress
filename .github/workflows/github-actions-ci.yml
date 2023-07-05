@@ -21,7 +21,7 @@ jobs:
           if-no-files-found: error
           path: build/
   
-  cypress-run:
+  api-tests:
     runs-on: ubuntu-latest
     needs: install
     steps:
@@ -34,21 +34,33 @@ jobs:
           name: build
           path: build/
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v5   
-        with:
-          runTests: false             
-      
-      - name: API tests
-        run: npm run api
+      - name: Run API tests
+        uses: cypress-io/github-action@v5
+        with: 
+          start: npm run api
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_KEY: ${{ secrets.CYPRESS_KEY }}
           CYPRESS_TOKEN: ${{ secrets.CYPRESS_TOKEN }}        
-      
-      - name: UI tests - Chrome
-        run: npm run percy:chrome
+
+  ui-tests-chrome:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Download the build folder
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: build/
+
+      - name: Run UI tests - Chrome
+        uses: cypress-io/github-action@v5
+        with:
+          start: npm run percy:chrome
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
@@ -56,20 +68,50 @@ jobs:
           CYPRESS_EMAIL: ${{ secrets.CYPRESS_EMAIL }}
           CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
       
-      - name: UI tests - Edge
-        run: npm run percy:edge
-        env:
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-          CYPRESS_EMAIL: ${{ secrets.CYPRESS_EMAIL }}
-          CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
-      
-      - name: UI tests - Firefox
-        run: npm run percy:firefox
-        env:
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-          CYPRESS_EMAIL: ${{ secrets.CYPRESS_EMAIL }}
-          CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
+  ui-tests-edge:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Download the build folder
+      uses: actions/download-artifact@v3
+      with:
+        name: build
+        path: build/
+
+    - name: Run UI tests - Edge
+      uses: cypress-io/github-action@v5
+      with:
+        start: npm run percy:edge
+      env:
+        PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+        CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+        CYPRESS_EMAIL: ${{ secrets.CYPRESS_EMAIL }}
+        CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
+  
+  ui-tests-firefox:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Download the build folder
+      uses: actions/download-artifact@v3
+      with:
+        name: build
+        path: build/
+
+    - name: Run UI tests - Firefox
+      uses: cypress-io/github-action@v5
+      with:
+        start: npm run percy:firefox
+      env:
+        PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+        CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+        CYPRESS_EMAIL: ${{ secrets.CYPRESS_EMAIL }}
+        CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
